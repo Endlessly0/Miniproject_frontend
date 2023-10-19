@@ -1,15 +1,92 @@
 <template>
-  <div> 
-  <v-data-table
+    <div>
+        <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          
+          contain
+          :src="require('../assets/Logopro.png')"
+          transition="scale-transition"
+          width="70"
+        />
+      </div>
+      <v-btn
+        text
+        @click="Menu()"
+      >
+        เมนู TINY CAFE
+      </v-btn>
+      
+      <v-spacer></v-spacer>
+
+      <v-avatar color="accent">
+      <v-icon dark>
+        mdi-account-circle
+      </v-icon>
+    </v-avatar>
+    </v-app-bar>
+
+
+        <v-card
+        class="mx-auto"
+        max-width="1200"
+        max-height="1500">
+
+        
+<v-row>
+
+    <v-col
+      cols="12"
+      >
+      <v-container
+      >
+      </v-container>
+      </v-col>
+        <v-col
+      cols="12"
+      >
+      <v-container
+      class="text-h3">
+      รีวิว
+      </v-container>
+      </v-col>
+
+
+      <v-col
+      cols="12"
+      >
+      <v-container
+      >
+      </v-container>
+      </v-col>
+
+        <v-col
+      cols="12"
+      >
+      <v-container
+      class="text-h6">
+        TINY CAFE
+      </v-container>
+      </v-col>
+      <v-col
+      cols="12"
+      >
+      <v-container
+      >
+<v-data-table
     :headers="headers"
-    :items="employeeItem"
+    :items="reviewItem"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar
         flat
       >
-        <v-toolbar-title>จัดการข้อมูล</v-toolbar-title>
+        <v-toolbar-title>รีวิวจากคุณ</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -22,13 +99,11 @@
               class="mb-2"
               @click="openDialog('add', defaultItem)"
             >
-              เพิ่มข้อมูล
+              รีวิว
             </v-btn>
       </v-toolbar>
     </template>
-    <template v-slot:[`item.role`]="{ item }">
-      {{ item.role.name }}
-    </template>
+
     <template v-slot:[`item.actions`]="{ item }">
       <v-btn small outlined
         class="mr-2"
@@ -46,14 +121,7 @@
       </v-icon>
       </v-btn>
     </template>
-    <template v-slot:no-data>
-      <v-btn
-        color="primary"
-        @click="initialize"
-      >
-        Reset
-      </v-btn>
-    </template>
+
   </v-data-table>
   <v-dialog v-model="dialogCreate" max-width="500px">
           <v-card>
@@ -69,41 +137,18 @@
                     sm="6"
                     md="6"
                   >
-                    <v-text-field
-                      v-model="firstname"
-                      label="ชื่อ"
+                  <v-text-field
+                      v-model="Id"
+                      label="รีวิวที่"
                     ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="6"
-                  >
+
                     <v-text-field
-                      v-model="lastname"
-                      label="นามสกุล"
+                      v-model="Message"
+                      label="ข้อความรีวิว"
                     ></v-text-field>
+                    
                   </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="6"
-                  >
-                    <v-text-field
-                      v-model="salary"
-                      label="เงินเดือน"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="6"
-                  >
-                    <v-text-field
-                      v-model="role"
-                      label="ตำแหน่ง"
-                    ></v-text-field>
-                  </v-col>
+
                   
                 </v-row>
               </v-container>
@@ -130,7 +175,7 @@
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5">คุณต้องการลบข้อมูลนี้ในตาราง ใช่ หรือ ไม่?</v-card-title>
+            <v-card-title class="text-h5">คุณต้องการลบการรีวิวนี้ ใช่ หรือ ไม่?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="closeDelete">ยกเลิก</v-btn>
@@ -139,54 +184,54 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-    </div> 
-</template>
+      </v-container>
+      </v-col>
+
+      
+
+    
+    </v-row>
+        </v-card>
+    </div>
+  </template>
 
 <script>
-  export default {
-    data: () => ({
-      firstname: '',
-      lastname: '',
-      salary: '',
-      role: '',
+export default {
+  data: () => ({
+      Message: '',
+      Id: '',
+
       dialogCreate: false,
       dialogDelete: false,
       
       headers: [
-        {
-          text: 'ไอดี',
-          align: 'start',
-          sortable: false,
-          value: 'id',
-        },
-        { text: 'ชื่อ', value: 'firstName' },
-        { text: 'นามสกุล', value: 'lastName' },
-        { text: 'เงินเดือน', value: 'salary' },
-        { text: 'ตำแหน่ง', value: 'role' },
+        // {
+        //   text: 'ไอดี',
+        //   align: 'start',
+        //   sortable: false,
+        //   value: 'id',
+        // },
+        { text: 'รีวิวที่', value: 'reviewId' },
+        { text: 'ข้อความรีวิว', value: 'message' },
+        
         { text: 'จัดการ', value: 'actions', sortable: false },
       ],
-      employeeItem: [],
+      reviewItem: [],
       editedIndex: -1,
       editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        Message: '',
+
       },
       defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        Id: '',
+        Message: '',
+
       },
       formTitle: '',
-      idEmployee: '',
+      idReview: '',
       idForDelete: ''
-    }),
-
-    watch: {
+  }),
+  watch: {
       dialog (val) {
         val || this.close()
       },
@@ -199,13 +244,25 @@
       this.initialize()
     },
 
-    methods: {
-      async initialize () {
-        this.employeeItem = []
+  methods: {
+    ListDessert () {
+      this.$router.push({ path: '/listdessert'}).catch(()=>{})
+    },
+    ListDrink() {
+      this.$router.push({ path: '/listdrink'}).catch(()=>{})
+    },
+    Menu() {
+      this.$router.push({ path: '/menu'}).catch(()=>{})
+    },
+
+
+
+    async initialize () {
+        this.reviewItem = []
         try {
-          var data = await this.axios.get('http://localhost:9000/employee')
-          console.log('data employee ====>', data)
-          this.employeeItem = data.data
+          var data = await this.axios.get('http://localhost:9000/review')
+          console.log('data review ====>', data)
+          this.reviewItem = data.data
         } catch (error) {
           
         }
@@ -219,11 +276,10 @@
         } else  {
             this.dialogCreate = true
             this.formTitle = 'แก้ไขข้อมูล'
-            this.firstname = item.firstName
-            this.lastname = item.lastname
-            this.salary = item.salary
-            this.role = item.role.name
-            this.idEmployee = item.id
+            this.Message = item.message
+            this.Id = item.reviewId
+
+            this.idReview = item.id
         }
       },
 
@@ -240,7 +296,7 @@
 
       async deleteItemConfirm () {
         try {
-          var response = await this.axios.delete('http://localhost:9000/employee/' + this.idForDelete)
+          var response = await this.axios.delete('http://localhost:9000/review/' + this.idForDelete)
           this.initialize()
         } catch (error) {
           
@@ -258,30 +314,23 @@
 
       close () {
         this.dialogCreate = false
-        this.firstname = ''
-        this.lastname = ''
-        this.salary = ''
-        this.role = ''
+        this.Message = ''
+        this.Id = ''
+
         
       },
 
       async save (action) {
         var data = {
-            firstName: this.firstname,
-            lastName: this.lastname,
-            salary: this.salary,
-            role: {
-              name: this.roles
-            },
-            skills: [
-              { skill: ''}
-            ]
+            message: this.Message,
+            reviewId: this.Id,
+
           }
         if(action === 'เพิ่มข้อมูล') {
           // this.desserts.push(this.editedItem)
           //console.log('data after send ===>', data)
           try {
-            var dataResponse = await this.axios.post('http://localhost:9000/employee', data)
+            var dataResponse = await this.axios.post('http://localhost:9000/review', data)
             console.log('dataResponse ===>', dataResponse)
             this.close()
             this.initialize()
@@ -290,7 +339,7 @@
           }
         } else {
           try {
-            var dataResponseEdit = await this.axios.put('http://localhost:9000/employee/' + this.idEmployee, data)
+            var dataResponseEdit = await this.axios.put('http://localhost:9000/review/' + this.idReview, data)
             console.log('dataResponse ===>', dataResponseEdit)
             this.close()
             this.initialize()
@@ -301,10 +350,9 @@
         }
         this.close()
       },
-    },
+
   }
+ 
+ 
+}
 </script>
-
-<style>
-
-</style>

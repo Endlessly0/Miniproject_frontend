@@ -1,94 +1,95 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
+
+<div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
         <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
+          
           contain
-          height="200"
+          :src="require('../assets/Logopro.png')"
+          transition="scale-transition"
+          width="70"
         />
-      </v-col>
+      </div>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to {{ username  }}
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
+      <v-btn
+        text
+        @click="RecCafe()"
       >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
+        แนะนำร้าน TINY CAFE
+      </v-btn>
+      <v-btn
+        text
+        @click="RecFood()"
       >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
+        แนะนำอาหาร
+      </v-btn>
+      
+<v-spacer></v-spacer>
 
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
+    </v-app-bar>
+  
+  <v-card
+    class="mx-auto"
+    max-width="2000"
+  >
+    <v-img
+      class="black--text align-center  "
+      height="750px"
+      :src="require('../assets/stpage.jpg')"
+    >
+      <v-card-title 
+      class="text-h2"
+      >TINY CAFE</v-card-title>
+      <v-spacer></v-spacer>
+      <v-card-subtitle class="text-h5 pb-0">
+      Welcome to TINY CAFE 
+    </v-card-subtitle>
+    </v-img>
 
-      <v-col
-        class="mb-5"
-        cols="12"
+    <v-card-subtitle class="pb-0">
+      เข้ามาเป็นสมาชิกกับเรา
+    </v-card-subtitle>
+
+    <v-card-text class="text--primary">
+      <div>เพื่อเข้าถึงเมนูอาหาร</div>
+
+      <div>ได้ร่วมกิจกรรมและรับของรางวัลจากทางร้าน</div>
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn class="text-h5 pb-0"
+        @click="goToLogin()"
+        color="orange"
+        text
       >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
+        เข้าสู่ระบบ
+      </v-btn>
 
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+      <v-btn class="text-h5 pb-0"
+        @click="goToRegister()"
+        color="orange"
+        text
+      >
+        ลงทะเบียน
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  
+
+  <!-- <v-main>
+      <router-view/>
+    </v-main> -->
+
+
+</v-app>
+  </div>
+
 </template>
 
 <script>
@@ -96,70 +97,37 @@ export default {
   name: 'HelloWorld',
 
   data: () => ({
-    ecosystem: [
-      {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader'
-      },
-      {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify'
-      },
-      {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify'
-      }
-    ],
-    importantLinks: [
-      {
-        text: 'Documentation',
-        href: 'https://vuetifyjs.com'
-      },
-      {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com'
-      },
-      {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify'
-      },
-      {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs'
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify'
-      }
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com/components/api-explorer'
-      },
-      {
-        text: 'Select a layout',
-        href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-      }
-    ],
-    username: ''
+    
   }),
-  created () {
-    this.$EventBus.$on('getUsername', this.getUsername)
-    this.getUsername()
-  },
   methods: {
-    getUsername () {
-      if (localStorage.getItem('username') !== null) {
-        this.username = localStorage.getItem('username')
-      } else {
-        this.username = 'Vuetify'
-      }
-    }
+    goToLogin () {
+      this.$router.push({ path: '/login'}).catch(()=>{})
+    },
+    goToRegister () {
+      this.$router.push({ path: '/register'}).catch(()=>{})
+    },
+    RecCafe () {
+      this.$router.push({ path: '/reccafe'}).catch(()=>{})
+    },
+    RecFood () {
+      this.$router.push({ path: '/recfood'}).catch(()=>{})
+    },
+
+    Table () {
+      this.$router.push({ path: '/manageTable'}).catch(()=>{})
+    },
+
   }
+ 
+ 
 }
 </script>
+
+<!-- <v-col cols="12">
+        <v-img
+          :src="require('../assets/logo.png')"
+          class="my-3"
+          contain
+          height="200"
+        />
+      </v-col> -->

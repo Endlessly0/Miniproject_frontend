@@ -23,11 +23,42 @@ const routes = [
     name: 'login',
     component: () => import('../views/LoginView.vue')
   },
+  
   {
-    path: '/manageTable',
-    name: 'manageTable',
-    component: ()=> import('../views/TableView.vue')
-  }
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/RegisterView.vue')
+  },
+  {
+    path: '/reccafe',
+    name: 'reccafe',
+    component: ()=> import('../views/RecCafeView.vue')
+  },
+  {
+    path: '/recfood',
+    name: 'recfood',
+    component: ()=> import('../views/RecFoodView.vue')
+  },
+  {
+    path: '/menu',
+    name: 'menu',
+    component: ()=> import('../views/MenuView.vue')
+  },
+  {
+    path: '/listdessert',
+    name: 'listdessert',
+    component: ()=> import('../views/ListDessertView.vue')
+  },
+  {
+    path: '/listdrink',
+    name: 'listdrink',
+    component: ()=> import('../views/ListDrinkView.vue')
+  },
+  {
+    path: '/review',
+    name: 'review',
+    component: ()=> import('../views/ReviewView.vue')
+  },
 ]
 
 const router = new VueRouter({
